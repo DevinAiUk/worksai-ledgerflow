@@ -1,0 +1,16 @@
+{
+  "name": "@worksai/worksai-ledgerflow",
+  "version": "1.0.0",
+  "description": "Local-first zero-based envelope budgeting with universal bank CSV normalization and 90-day runway forecasting.",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.mjs",
+  "scripts": {
+    "test": "node --test tests/product.test.mjs",
+    "lint": "node --check src/index.mjs && node --check tests/product.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DevinAiUk/worksai-ledgerflow.git"
+  }
+}
