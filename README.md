@@ -1,31 +1,22 @@
-# WorksAi LedgerFlow (`worksai-02`)
+# WorksAi LedgerFlow (`worksai-ledgerflow`)
 
 > Local-first zero-based envelope budgeting with universal bank CSV normalization and 90-day runway forecasting.
 
-**Category:** A. Web apps  
-**License:** MIT (Derivative of [Actual Budget](https://github.com/actualbudget/actual) @ `92865f3`)  
-**Portfolio Page:** `https://devinai.uk/worksai/products/worksai-ledgerflow/`
+- **Live Subdomain Application:** [https://ledgerflow.worksai.org](https://ledgerflow.worksai.org)
+- **WorksAI Hub Specification:** [https://worksai.org/apps/worksai-ledgerflow](https://worksai.org/apps/worksai-ledgerflow)
+- **Category:** A. Web apps
+- **License:** MIT (Derived from [Actual Budget](https://github.com/actualbudget/actual) @ `92865f3`)
 
-## Value Proposition & Scope
-Replaces YNAB ($109/year) with a local-first envelope budgeter that normalizes messy bank CSV exports, auto-categorizes merchants deterministically, flags subscription price creep, and forecasts 90-day cashflow runway.
+## Capability Matrix
+- **What You Can Do:** Normalize CSV/JSON bank & SaaS ledger rows, enforce zero-based monthly budgeting, flag vendor subscription price creep (>5% increase), and calculate 90-day net cashflow runway.
+- **Deterministic Domain Utilities:** normalizeAndBudgetTransactions (regex vendor categorization, cent-exact zero-based budgeting, and 90-day burn projection).
+- **Genuine AI Model Features:** Cloudflare Workers AI (@cf/meta/llama-3.1-8b-instruct) executive variance commentary and vendor consolidation recommendations.
+- **Persisted R2/Neon Features:** Normalized ledger batches, price-creep alerts, and 90-day runway snapshots persisted in Cloudflare R2 (workspaces/worksai-ledgerflow/*) and Neon Postgres.
+- **Known Limitations:** Live Plaid/GoCardless bank feed polling requires user API credentials; CSV/JSON import works out of the box.
 
-### What Works Out-of-the-Box (Zero External Credentials Required)
-CSV ingestion, merchant categorization rules, zero-based envelope budgeting, subscription price-creep detection, and 90-day cashflow forecasting.
-
-### What Requires User Configuration (`.env.example`)
-Optional `SIMPLEFIN_BRIDGE_TOKEN` (North America) for automated bank polling; optional `OPENAI_API_KEY` for ambiguous payee classification.
-
-## Measurable Acceptance Criteria
-- AC-01: Normalizes heterogeneous bank CSV rows (Date, Payee/Description, Amount/Debit/Credit) into integer-cent transactions without floating-point rounding drift.
-- AC-02: Auto-categorizes merchants using deterministic keyword/regex rules and calculates exact zero-based envelope balances.
-- AC-03: Detects recurring vendor charges that increased by >5% month-over-month as subscription price creep.
-- AC-04: Computes 90-day cashflow runway projections and persists ledger state across reloads.
-
-## Known Limitations
-- Automated direct bank polling outside North America requires CSV/OFX upload due to GoCardless closing new free EU accounts.
-- PDF statement OCR requires text-layer PDFs or an configured vision API key.
-
-## Quick Start & Verification
+## Verification & Local Testing
 ```bash
+npm run lint
+npm run typecheck
 npm test
 ```
